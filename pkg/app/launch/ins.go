@@ -21,6 +21,7 @@ type ins struct {
   exitIfFail bool   // Выйти в случае ошибки запуска
   timeout    int64  // Таймаут ожидания (time.Millisecond); 0 - без таймаута
   end        bool   // Завершение всех задач
+  exited     bool   // Вышли из ожидания
   isErr      bool   // Одна из задач завершилась с ошибкой
   mx         sync.Mutex
   signals    chan os.Signal
@@ -41,15 +42,17 @@ func New(c Cfg) *ins {
   signal.Notify(o.signals, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
 
   if o.timeout > 0 {
-    go func() {
-      o.timer = time.AfterFunc(time.Millisecond*time.Duration(o.timeout), o.Exit)
-    }()
+    o.timer = time.AfterFunc(time.Millisecond*time.Duration(o.timeout), o.Exit)
   }
 
   return o
 }
 
 func (i *ins) Exit() {
+  if i.exited {
+    return
+  }
+  i.exited = true
   i.signals <- nil
 }
 
@@ -74,10 +77,9 @@ func (i *ins) Task(fn func() error) {
   if i.end {
     i.log.Panic("Chan cannot be added after Wait")
   }
+  i.wg.Add(1)
 
   go func() {
-    i.wg.Add(1)
-
     if err := fn(); err != nil {
       i.isErr = true
       i.log.Errorf("Ошибка запуска задачи: %v", err)
