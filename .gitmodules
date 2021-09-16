@@ -1,0 +1,3 @@
+[submodule "submod/bsf"]
+	path = submod/bsf
+	url = git@github.com:semenovem/bsf.git
