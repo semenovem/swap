@@ -1,4 +1,4 @@
-package api
+package tinkoffapi
 
 // SandboxRegisterRequest Регистрация клиента в sandbox
 // https://tinkoffcreditsystems.github.io/invest-openapi/swagger-ui/#/sandbox/post_sandbox_register

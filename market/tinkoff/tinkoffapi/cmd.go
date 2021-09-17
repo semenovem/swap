@@ -1,19 +1,19 @@
-package api
+package tinkoffapi
 
 import (
   "github.com/semenovem/bsf/cmdapi"
 )
 
 func (t *TfApi) setRoutes() {
-  t.api.RouteHealth("/health")
-  t.api.RouteReply("/reset", t.apiReset)
-  t.api.RouteReply("/ready", t.ready)
-  t.api.RouteReply("/status", t.status)
+  t.cmd.RouteHealth("/health")
+  t.cmd.RouteReply("/reset", t.apiReset)
+  t.cmd.RouteReply("/ready", t.ready)
+  t.cmd.RouteReply("/status", t.status)
 
-  t.api.RouteReply("/register", t.ApiSandboxRegister)
-  t.api.RouteReply("/portfolio", t.ApiPortfolio)
-  t.api.RouteReply("/portfolio/currencies", t.ApiPortfolioCurrencies)
-  t.api.RouteReply("/market/stocks", t.ApiMarketStocks)
+  t.cmd.RouteReply("/register", t.ApiSandboxRegister)
+  t.cmd.RouteReply("/portfolio", t.ApiPortfolio)
+  t.cmd.RouteReply("/portfolio/currencies", t.ApiPortfolioCurrencies)
+  t.cmd.RouteReply("/market/stocks", t.ApiMarketStocks)
 }
 
 func (t *TfApi) apiReset(reply *cmdapi.Reply) error {

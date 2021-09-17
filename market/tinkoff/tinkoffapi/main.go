@@ -1,4 +1,4 @@
-package api
+package tinkoffapi
 
 import (
   "context"
@@ -12,12 +12,12 @@ import (
 )
 
 func New(ctx context.Context, l *logrus.Entry) *TfApi {
-  api := cmdapi.New(ctx, l.WithField("", "api"))
+  cmd := cmdapi.New(ctx, l.WithField("", "cmd"))
 
   o := &TfApi{
     ctx:     ctx,
     log:     l,
-    api:     api,
+    cmd:     cmd,
     declApi: declEntry,
   }
 
@@ -41,7 +41,7 @@ func (t *TfApi) Start() error {
 
   t.log.Info("Запуск")
 
-  _ = t.api.Start()
+  _ = t.cmd.Start()
 
   tkn, err := t.readToken()
   if err != nil {

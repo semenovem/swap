@@ -1,4 +1,4 @@
-package api
+package tinkoffapi
 
 import (
   "github.com/semenovem/bot/common"
@@ -6,6 +6,8 @@ import (
 )
 
 func (t *TfApi) Cfg(c *Config) {
+  t.log.Infof("%+v", *c)
+
   failure := false
   if c.TimeoutHttp == 0 {
     t.log.Warn("Не указано значение TimeoutHttp")
@@ -18,7 +20,7 @@ func (t *TfApi) Cfg(c *Config) {
   }
 
   t.cfg = c
-  t.api.SetPort(c.Base.CmdPort)
+  t.cmd.SetPort(c.Base.CmdPort)
 
   t.timeoutHttp = time.Duration(c.TimeoutHttp) * time.Millisecond
 }

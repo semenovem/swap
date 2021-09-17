@@ -1,4 +1,4 @@
-package api
+package tinkoffapi
 
 // PortfolioRequest --------------------------------------
 // Получение портфеля клиента

@@ -1,4 +1,4 @@
-package api
+package tinkoffapi
 
 import (
   "context"
@@ -50,7 +50,7 @@ type TfApi struct {
   cfg         *Config
   enabled     bool
   started     bool
-  api         *cmdapi.Cmd
+  cmd         *cmdapi.Cmd
   mx          sync.Mutex
   st          status
   token       string
