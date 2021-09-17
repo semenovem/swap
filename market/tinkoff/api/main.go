@@ -8,6 +8,7 @@ import (
   "io/ioutil"
   "net/http"
   "strings"
+  "time"
 )
 
 func New(ctx context.Context, l *logrus.Entry) *TfApi {
@@ -52,6 +53,12 @@ func (t *TfApi) Start() error {
     Timeout: t.timeoutHttp,
   }
 
+  go func() {
+    time.Sleep(time.Second * 5 )
+    t.started = true
+  }()
+
+
   return nil
 }
 
@@ -64,4 +71,32 @@ func (t *TfApi) readToken() (string, error) {
     return "", errors.Wrap(err, ErrReadFileToken.Error())
   }
   return strings.TrimSpace(string(byt)), nil
+}
+
+func (t *TfApi) WaitStart() chan struct{} {
+  ch := make(chan struct{})
+
+  if t.started {
+    close(ch)
+  } else {
+
+    // TODO исправить на немедленную нотификацию о запуске
+    go func() {
+      defer close(ch)
+
+      for {
+        select {
+        case <-t.ctx.Done():
+          return
+        case <-time.After(time.Millisecond * 500):
+          if t.started {
+            return
+          }
+        }
+      }
+    }()
+
+  }
+
+  return ch
 }

@@ -49,6 +49,7 @@ type TfApi struct {
   log         *logrus.Entry
   cfg         *Config
   enabled     bool
+  started     bool
   api         *cmdapi.Cmd
   mx          sync.Mutex
   st          status
