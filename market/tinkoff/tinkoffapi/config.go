@@ -1,7 +1,7 @@
 package tinkoffapi
 
 import (
-  "github.com/semenovem/bot/common"
+  "github.com/semenovem/bot/core"
   "time"
 )
 
@@ -26,8 +26,8 @@ func (t *TfApi) Cfg(c *Config) {
 }
 
 type Config struct {
-  Base      common.BaseConfig `yaml:"base"`
-  Enable    bool              `yaml:"enable"`
+  Base   core.BaseConfig `yaml:"base"`
+  Enable bool            `yaml:"enable"`
   UrlEntry  string            `yaml:"url-entry"`
   TokenFile string            `yaml:"token-file"` // токен
 

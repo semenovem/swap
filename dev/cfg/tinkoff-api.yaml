@@ -1,0 +1,19 @@
+# Описание в api/tf/config.go
+
+enable: true
+
+base:
+  cmd-port: 8010
+  cmd-log-level: WARN
+#  dev-mode: true
+#  test-mode: true
+#  log-level: DEBUG
+#  log-mode: TEXT
+#  log-dest: FILE
+
+url-entry: https://api-invest.tinkoff.ru/openapi/sandbox
+
+token-file: /repo/dev/cfg/tf-api-token.txt
+
+
+timeout-http: 10000 # 10sec * 1000ms

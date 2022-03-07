@@ -1,0 +1,12 @@
+# Описание в api/tf/config.go
+
+enable: true
+
+base:
+  cmd-port: 8020
+  cmd-log-level: WARN
+#  dev-mode: true
+#  test-mode: true
+#  log-level: DEBUG
+#  log-mode: TEXT
+#  log-dest: FILE

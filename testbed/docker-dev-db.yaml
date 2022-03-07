@@ -1,0 +1,43 @@
+version: '3.7'
+
+
+networks:
+  net-bot-dev:
+    external: true
+
+x-logging: &logging-base
+  driver: json-file
+  options:
+    max-size: 1m
+    max-file: 3
+    labels: iata
+
+x-deploy: &deploy-base
+  replicas: 1
+  restart_policy:
+    condition: any
+    delay: 5s
+
+services:
+  db:
+    image: postgres:13.3
+    environment:
+      - POSTGRES_PASSWORD=example
+    #    ports:
+    #      - 9443:9443
+    networks:
+      - net-bot-dev
+
+    logging: *logging-base
+    deploy: *deploy-base
+
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    networks:
+      - net-bot-dev
+
+    logging: *logging-base
+    deploy: *deploy-base

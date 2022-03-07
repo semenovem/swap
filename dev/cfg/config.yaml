@@ -1,0 +1,22 @@
+# Описание в `config.go` основного приложения
+
+base:
+  dev-mode: true
+  test-mode: true
+  log-level: DEBUG
+  log-mode: SHORT
+  log-dest: CONSOLE
+  cmd-port: 80
+  cmd-log-level: WARN
+
+timeout-app-launch: 300000 # 5мин * 60сек * 1000мс
+
+tinkoff-api-config:  /repo/dev/cfg/tinkoff-api.yaml
+tinkoff-sync-config: /repo/dev/cfg/tinkoff-sync.yaml
+
+#name: sftp-клиент
+#list:
+#  - name: sftp-клиент0
+#    host: iata-sftp-client0
+#    port: 80
+#

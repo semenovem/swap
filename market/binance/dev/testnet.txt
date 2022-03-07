@@ -1,0 +1,15 @@
+
+https://testnet.binance.vision/
+
+
+test user
+1618122887643497790
+
+
+Generate HMAC_SHA256 key
+
+test-dev-api-key
+API Key:
+5AsEmheAcbq6x4ABWKGFPUdkbmQLfVtiUFRWlSCdhosLCAWZPRsCjpKjXHtZCFD4
+Secret Key:
+7KMgeLTGHiO2NrvyVeWe4mQLluxIPzAQk0BjlgHCm8AMmccPXw4ifpweT5KuJWvf

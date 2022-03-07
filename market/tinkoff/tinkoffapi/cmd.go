@@ -13,7 +13,7 @@ func (t *TfApi) setRoutes() {
   t.cmd.RouteReply("/register", t.ApiSandboxRegister)
   t.cmd.RouteReply("/portfolio", t.ApiPortfolio)
   t.cmd.RouteReply("/portfolio/currencies", t.ApiPortfolioCurrencies)
-  t.cmd.RouteReply("/market/stocks", t.ApiMarketStocks)
+  t.cmd.RouteReply("/market/stocks", t.ApiMarketStocksHttp)
 }
 
 func (t *TfApi) apiReset(reply *cmdapi.Reply) error {
